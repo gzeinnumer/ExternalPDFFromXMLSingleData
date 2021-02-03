@@ -1,7 +1,5 @@
 package com.gzeinnumer.externalpdffromxmlsingledata;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.net.Uri;
@@ -10,14 +8,15 @@ import android.os.StrictMode;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.gzeinnumer.externalpdffromxmlsingledata.R;
-import com.gzeinnumer.externalpdffromxmlsingledata.helper.FunctionGlobalPDFSingle;
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.gzeinnumer.externalpdffromxmlsingledata.pdfSingle.PDFSAppUtils;
 
 import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class MainActivity extends AppCompatActivity implements FunctionGlobalPDFSingle.PDFCallBack {
+public class MainActivity extends AppCompatActivity implements PDFSAppUtils.PDFSCallBack {
 
     private static final String TAG = "MainActivity_";
 
@@ -31,12 +30,12 @@ public class MainActivity extends AppCompatActivity implements FunctionGlobalPDF
 
         dataToPDF.put("title", "Title ini");
 
-        FunctionGlobalPDFSingle.initPDFSingleData(getApplicationContext(), this, dataToPDF);
+        PDFSAppUtils.initPDFSingleData(getApplicationContext(), this, dataToPDF);
     }
 
     @Override
     public void callBackPath(String path) {
-        Log.d(TAG, "callBackPath: "+path.toString());
+        Log.d(TAG, "callBackPath: " + path);
         sharePdf(path);
     }
 

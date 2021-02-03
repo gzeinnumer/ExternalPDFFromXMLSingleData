@@ -1,18 +1,17 @@
 package com.gzeinnumer.externalpdffromxmlsingledata;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
-
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.widget.TextView;
 
-import com.gzeinnumer.externalpdffromxmlsingledata.R;
-import com.gzeinnumer.externalpdffromxmlsingledata.helper.FunctionGlobalDir;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+
+import com.gzeinnumer.externalpdffromxmlsingledata.pdfSingle.DirPDFS;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -48,18 +47,18 @@ public class SplashScreenActivity extends AppCompatActivity {
     }
 
     private void onSuccessCheckPermitions() {
-        if (FunctionGlobalDir.initFolder()){
-            if (FunctionGlobalDir.isFileExists(FunctionGlobalDir.appFolder)){
-                msg+="Sudah bisa lanjut\n";
+        if (DirPDFS.initFolder()) {
+            if (DirPDFS.isFileExists(DirPDFS.appFolder)) {
+                msg += "Sudah bisa lanjut\n";
                 tv.setText(msg);
                 startActivity(new Intent(getApplicationContext(), MainActivity.class));
                 finish();
             } else {
-                msg+="Direktory tidak ditemukan\n";
+                msg += "Direktory tidak ditemukan\n";
                 tv.setText(msg);
             }
         } else {
-            msg+="Gagal membuat folder\n";
+            msg += "Gagal membuat folder\n";
             tv.setText(msg);
         }
     }
